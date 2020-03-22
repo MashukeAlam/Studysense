@@ -1,0 +1,248 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./extra_packages/bootstrap.min.css" />
+    <title>StudySense</title>
+  </head>
+  <style>
+    * {
+      cursor: url('cursor.cur'), auto;
+      font-family: "Times New Roman", Times, serif !important;
+    }
+
+    body {
+      padding: 7px;
+    }
+    #starting-text {
+      color: greenyellow;
+      font-weight: bold;
+      transition: 1s;
+    }
+
+    #starting-text:hover {
+      color: rgb(19, 186, 0);
+      font-weight: bold;
+      transition: 1s;
+    }
+
+    #instruction1 {
+      color: rgb(202, 202, 202);
+
+      transition: 1s;
+    }
+    #instruction1:hover {
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+    }
+    #instruction2 {
+      color: rgb(202, 202, 202);
+
+      transition: 1s;
+    }
+    #instruction2:hover {
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+    }
+
+    #app-name {
+      color: purple;
+      font-size: 30px;
+    }
+
+    .inp {
+      margin: 12px;
+    }
+
+    #files td {
+      vertical-align: inherit;
+    }
+  </style>
+  <body>
+    <h4 id="starting-text">Home</h4>
+    <a href="./about.html">About Me</a>
+    <div id="creds">
+      <div class="ucam-container">
+        <div id="output"></div>
+        <a href="./SystemInfo.html">System Info</a>
+        <h5>UCAM</h5>
+        <input
+          class="inp form-control"
+          type="text"
+          name="id-ucam"
+          id="ucam-i"
+          placeholder="Enter your ID ..."
+        />
+        <input
+          class="inp form-control"
+          type="password"
+          name="id-ucam"
+          id="ucam-p"
+          placeholder="Enter your Password ..."
+        />
+        <input type="button" value="Save" onclick="verify_ucam()" />
+      </div>
+
+      <div class="elms-container">
+        <div id="output"></div>
+        <h5>ELMS</h5>
+        <input
+          class="inp form-control"
+          type="text"
+          name="id-ucam"
+          id="elms-i"
+          placeholder="Enter your ID ..."
+        />
+        <input
+          class="inp form-control"
+          type="password"
+          name="id-ucam"
+          id="elms-p"
+          placeholder="Enter your Password ..."
+        />
+        <input type="button" value="Save" onclick="verify_elms()" />
+      </div>
+
+      <p>Please select an empty folder !</p>
+      <button onclick="downloadLocation()">Select Download Location</button>
+    </div>
+    <h5 id="instruction1">Click on the website you want to visit</h5>
+
+    <div id="goto" style="display: none;">
+      <button type="button" class="btn btn-outline-warning" onclick="elms_fire()">Elms</button>
+      <button type="button" class="btn btn-outline-warning" onclick="ucam_fire()">Ucam</button>
+      <button type="button" class="btn btn-outline-danger" onclick="changePassword()">Change Saved Password</button>
+    </div>
+
+    <div id="tablesub">
+      <h6 id="instruction2">Click ELMS to show enrolled subjects</h6>
+
+      <table class="table table-hover table-dark" id="subjects">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Course</th>
+          <th scope="col">Open</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="tablefiles">
+      <h6 id="instruction2">Downloaded files <button class="btn btn-outline-success" onclick="reloadFileCache()"><img src="reload-white.svg"></button></h6>
+
+      <table class="table table-hover table-dark" id="files">
+        <thead>
+          <th scope="col">#</th>
+          <th scope="col">Course</th>
+        </thead>
+        <tbody id="fbdy">
+          
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+  <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+
+  <script src="./handle-elms-launch.js"></script>
+  <script src="./script.js"></script>
+  <script src="./db-manager.js"></script>
+
+  <script>
+    function send_data (data) {
+      ipcRenderer.send('location', data)
+    }
+
+    ipcRenderer.on('location', (e, args) => {
+      // console.log(args)
+      store.set('save_location', args);
+      document.getElementById('creds').style.display = 'none';
+      document.getElementById('goto').style.display = 'block';
+      // console.log(store.get('save_location'))
+    })
+    function downloadLocation () {
+       send_data('spawn_window')
+      // console.log(111)
+    }
+    // console.log(4545454545454545);
+    
+    ipcRenderer.on('test', (e, a) => {
+      // console.log(a);
+      
+    });
+  </script>
+
+  <script>
+    // const { ipcRenderer } = require('electron')
+    const table = document.getElementById('subjects')
+    function send (data) {
+      ipcRenderer.send('sendSubjectsToDisplay', data)
+    }
+
+    //send('S')
+
+    ipcRenderer.on('there', (e, args) => {
+      // console.log(args)
+      //send('R')
+
+      for (var i = 0; i < args.length; i++) {
+        var newRow = table.insertRow(-1)
+        var cell01 = newRow.insertCell(0)
+        var cell02 = newRow.insertCell(1)
+        var cell03 = newRow.insertCell(2)
+        cell01.innerHTML = i + 1
+        cell02.innerHTML = args[i][1]
+        var onclick = 'send("' + args[i][0] + '")'
+        cell03.innerHTML =
+          '<button onclick=' +
+          onclick +
+          ' type="button" class="btn btn-outline-info">Check</button>'
+      }
+      document.getElementById('instruction2').innerHTML =
+        'These subjects were enrolled...'
+    });
+  </script>
+
+  <script>
+    openFile = (name) => {
+      // console.log(name);
+      
+      sendd(name);
+    }
+
+    reloadFileCache = () => {
+      sendd(999);
+    }
+
+    const table1 = document.getElementById('files')
+    // console.log('here')
+    function sendd (data) {
+      // console.log(data);
+      
+      ipcRenderer.send('sendFiles', data);
+    }
+
+    sendd(999);
+    ipcRenderer.on('sendFiles', (e, args) => {
+      //console.log(args);
+      document.getElementById('fbdy').innerHTML = '';
+      for(var i = 0; i < args.length; i++) {
+        _files = Array.from(args[i][1]);
+        // console.warn(_files);
+        var rowspan = _files.length;
+        var html = "<tr><th rowspan='"+ rowspan +"'>" + args[i][0].split('\\').slice(-1)[0] +"</th>";
+        for(var j = 0; j < _files.length; j++) {
+          html += "<td>"+ _files[j].split('\\').slice(-1)[0] +"</td><td><button type='button' class='btn btn-outline-success' onclick='openFile(\""+ i + j +"\")'>Open</button></td>"  + "</tr>";
+        }
+        document.getElementById('fbdy').innerHTML += html;
+
+      }
+      
+    });
+  </script>
+</html>

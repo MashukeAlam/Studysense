@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./extra_packages/bootstrap.min.css">
+    <title>SysInfo App</title>
+</head>
+<style>
+    #starting-text {
+        color: greenyellow;
+        font-weight: bold;
+    }
+
+    #app-name {
+        color: purple;
+        font-size: 30px;
+    }
+</style>
+<body>
+    <h3 id="starting-text">System Info</h3>
+    <div class="container">
+        <a href="index.html">Go back</a>
+        <div id="output"></div>
+    </div>
+</body>
+
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script>
+    require('./renderer.js');
+</script>
+<script>
+    console.log(process);
+    let output = `<h4 class='page-header'>App Version</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">Node Version: ${process.versions.node}</li>
+                        <li class="list-group-item">Electron Version: ${process.versions.electron}</li>
+                        <li class="list-group-item">Chrome Version: ${process.versions.chrome}</li>
+                    </ul>
+                    
+                    
+                    <h4 class='page-header'>Archi & Platform</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">Architecture: ${process.arch}</li>
+                        <li class="list-group-item">Platform: ${process.platform}</li>
+                    </ul>
+                    
+                    
+                    <h4 class='page-header'>System</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">CPU Name: ${process.env.PROCESSOR_IDENTIFIER}</li>
+                        <li class="list-group-item">CPU Usage: ${process.getCPUUsage().percentCPUUsage}</li>
+                        <li class="list-group-item">Memory Total: ${process.getSystemMemoryInfo().total/1000000 } GB</li>
+                        <li class="list-group-item">Memory Free: ${process.getSystemMemoryInfo().free/1000000 } GB</li>
+                    </ul>
+                    
+                    <h4 class='page-header'>This App</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">PID: ${process.pid}</li>
+                    </ul>`;
+
+    document.getElementById('output').innerHTML = output;
+</script>
+</html>

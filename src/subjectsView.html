@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./extra_packages/bootstrap.min.css" />
+
+    <title>yoooo</title>
+  </head>
+  <body>
+    <table class="table table-hover table-dark" id="subjects">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Course</th>
+            <th scope="col">Open</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+
+  </body>
+
+  <script>
+    const { ipcRenderer } = require('electron')
+    const table = document.getElementById('subjects')
+    function send (data) {
+      ipcRenderer.send('sendSubjectsToDisplay', data);
+    }
+
+    send('S');
+
+    ipcRenderer.on('sendSubjectsToDisplay', (e, args) => {
+      console.log(args);
+      send('R');
+
+      
+      
+
+      for(var i = 0; i < args.length; i++) {
+        var newRow = table.insertRow(-1)
+        var cell01 = newRow.insertCell(0)
+        var cell02 = newRow.insertCell(1)
+        var cell03 = newRow.insertCell(2)
+        cell01.innerHTML = i
+        cell02.innerHTML = args[i][1]
+        var onclick = "send(\"" + args[i][0] + "\")"
+        cell03.innerHTML = '<button onclick='+ onclick +' type="button" class="btn btn-info">Check</button>'
+      }
+    });
+  </script>
+</html>
