@@ -8,7 +8,7 @@ To test this software -
 	1. `git clone https://github.com/MashukeAlam/Studysense.git`\
 	2. `cd Studysense`\
 	3. `npm install`\
-	4. `npm start`\ \
+	4. `npm start`\
 	
 
 For the third step you must have to have NPM install.
@@ -23,7 +23,7 @@ Inside source folder are the files which is actually responsible for the app's f
 
 Folders: 
 	1. /src/extra-packages -> This holds bootstrap styles.\
-	2. /src/imgs -> This is redundant. Not used in project.\
+	2. /src/imgs -> This is redundant. Not used in project.
 	
 Files:
 	1. /src/SystemInfo.html -> This file shows system processors, RAM size etc.\
