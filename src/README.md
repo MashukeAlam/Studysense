@@ -10,7 +10,7 @@ To test this software -
 	3. `npm install`
 	4. `npm start`
 	
-	 :sparkles:
+	 :sparkles
 
 For the third step you must have to have NPM install.
 Then you can change/edit the source code. After that for creating a public build - 
