@@ -10,13 +10,13 @@ To test this software -
 	3. `npm install`
 	4. `npm start`
 	
-	 :sparkles
 
 For the third step you must have to have NPM install.
 Then you can change/edit the source code. After that for creating a public build - 
 	5. `npm run make`
 	
-	 :sparkles:  :sparkles:
+:blush:
+	
 
 # Folder/File descriptions:
 Inside source folder are the files which is actually responsible for the app's functionality.
@@ -40,7 +40,7 @@ Files:
 	10. /src/SubjectView.html -> Not used. This is later integrated inside index.html file.
 
 # Some restrictions
-Please don't publish your personally modified version of this app to public without my knowledge. ** You can however use it in your own PC.
+Please don't publish your personally modified version of this app to public without my knowledge. :sunglasses: ** You can however use it in your own PC.
 
 <b>And please never mess with these files below:</b>
 	1. /src/about.html
@@ -54,3 +54,8 @@ Please don't publish your personally modified version of this app to public with
 ** My Email: mjim181145@bscse.uiu.ac.bd
 ** My FB: Mash Jim
 ** My Dept. & Roll: CSE - 011-181-145
+
+
+:green_heart: :green_heart: :green_heart:
+:purple_heart: :purple_heart: :purple_heart:
+### Thanks
