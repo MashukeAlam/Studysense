@@ -4,16 +4,16 @@
 
 
 # For source code installation
-To test this software -
+To test this software -\
 	1. `git clone https://github.com/MashukeAlam/Studysense.git`\
 	2. `cd Studysense`\
 	3. `npm install`\
-	4. `npm start`\
+	4. `npm start`
 	
 
 For the third step you must have to have NPM install.
 Then you can change/edit the source code. After that for creating a public build - 
-	5. `npm run make` \
+	5. `npm run make` 
 	
 :blush:
 	
