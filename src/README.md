@@ -5,7 +5,7 @@
 
 # For source code installation
 To test this software -
-	1. `git clone https://github.com/MashukeAlam/Studysense.git`
+	1. `git clone https://github.com/MashukeAlam/Studysense.git`\
 	2. `cd Studysense`
 	3. `npm install`
 	4. `npm start`
