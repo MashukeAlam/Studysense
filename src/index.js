@@ -62,6 +62,27 @@ ipcMain.on('fire_elms_channel', (e, args) => {
 
   e.sender.send('fire_elms_channel', 'Received!')
 })
+ipcMain.on('fire_ucam_channel', (e, args) => {
+  if (args !== null) {
+        const _width = screen.getPrimaryDisplay().bounds.width
+    const _height = screen.getPrimaryDisplay().bounds.height
+
+    const ucam = new BrowserWindow({
+      x: _width - 700,
+      y: _height / 2 - 300 + fakibajiOffset,
+      width: 700,
+      height: 600,
+      icon: __dirname + '/assets/icons/win/icon.ico',
+      webPreferences: { nodeIntegration: false }
+    })
+    fakibajiOffset += 12;
+
+    ucam.loadURL("http://ucam.uiu.ac.bd/Security/LogIn.aspx?scMgtMas=upMain%7ClogMain%24Button1&logMain%24UserName="+ store.get('ucam-creds.username') +"&logMain%24Password="+ store.get('ucam-creds.password') +"&__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwULLTE5MDk1NjIxMjAPFgIeE1ZhbGlkYXRlUmVxdWVzdE1vZGUCARYCAgMPZBYCAgEPZBYCZg9kFgICAw88KwAKAQAPFgQeC0ZhaWx1cmVUZXh0BSZJbnZhbGlkIExvZ2luLUlELCBFbnRlciB2YWxpZCBMb2dpbi1JRB4IVXNlck5hbWUFDWFhYWFhYWFhYWFhYWFkFgJmD2QWAgIEDw8WAh4EVGV4dAUNYWFhYWFhYWFhYWFhYWRkZGpdzRdsDjE0%2Fv9pQwKkf9xbj6fzsbpxWpijg9YbW5Dl&__VIEWSTATEGENERATOR=A0A15FC2&__PREVIOUSPAGE=ZuiisqBvpW_0hcUNji5ecSkkredq8yDQHG4lecJt6g4AlanF6slDLkiQYH0I4SERfe1Ae3O-5mLXekkIYDMF6EVUFx7kRx12NhFwQ2qKAho1&__ASYNCPOST=true&logMain%24Button1=LOG%20IN")
+
+  }
+
+  e.sender.send('fire_elms_channel', 'Received!')
+})
 ipcMain.on('sendFiles', (e, args) => {
   if (args !== null && args === 999) {
     //openElms(args.username, args.password);
