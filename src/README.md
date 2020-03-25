@@ -12,7 +12,7 @@ To test this software -\
 	
 
 For the third step you must have to have NPM install.
-Then you can change/edit the source code. After that for creating a public build - 
+Then you can change/edit the source code. After that for creating a public build - \
 	5. `npm run make` 
 	
 :blush:
@@ -37,15 +37,15 @@ Files:
 	7. /src/reload.svg -> this is material design icon for reload button.\
 	8. /src/renderer.js -> This file is mandatory for electron functionality. Electron holds its technical mumbo-jumbo inside this file temporarily in runtime.\
 	9. /src/script.js -> used for linking renderer.js.\
-	10. /src/SubjectView.html -> Not used. This is later integrated inside index.html file.\
+	10. /src/SubjectView.html -> Not used. This is later integrated inside index.html file.
 
 # Some restrictions
 Please don't publish your personally modified version of this app to public without my knowledge. :sunglasses: ** You can however use it in your own PC.
 
-<b>And please never mess with these files below:</b>
+<b>And please never mess with these files below:</b>\
 	1. /src/about.html\
 	2. /src/renderer.js\
-	3. /package-jock.json\
+	3. /package-lock.json\
 	
 
 
