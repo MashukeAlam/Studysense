@@ -51,7 +51,8 @@ Please don't publish your personally modified version of this app to public with
 
 	
 # ** Contacts
-** My Email: mjim181145@bscse.uiu.ac.bd
+** My Email     :  mjim181145@bscse.uiu.ac.bd
+** 		:  jimmashuke@gmail.com
 ** My FB: Mash Jim
 ** My Dept. & Roll: CSE - 011-181-145
 
